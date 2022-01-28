@@ -7,7 +7,7 @@ function search() {
     let count = 0;
 
     for (let town of towns) {
-        if (town.textContent.includes(inputWord)){
+        if (town.textContent.includes(inputWord) && inputWord !== ''){
             count++;
             town.style.fontWeight = 'bold';
             town.style.textDecoration = 'underline';
