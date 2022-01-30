@@ -1,1 +1,82 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <article class="logo-wrapper">
+        <img src="https://previews.123rf.com/images/stockgiu/stockgiu2001/stockgiu200129039/138862162-pop-corn-icon-cartoon-isolated-black-and-white-vector-illustration-graphic-design.jpg" alt="Popcorn">
+    </article>
+    <nav>
+        <ul>
+            <li class="nav-list-item"><a href="https://www.donetianpetkov.com/">За мен</a></li>
+            <li class="nav-list-item"><a href="https://www.donetianpetkov.com/category/%d0%bb%d1%8e%d0%b1%d0%b8%d0%bc%d0%b8-%d1%81%d0%b5%d1%80%d0%b8%d0%b0%d0%bb%d0%b8/">Любими Филми</a></li>
+            <li class="nav-list-item"><a href="https://www.donetianpetkov.com/category/%d1%81%d1%82%d0%b0%d1%8f%d1%82%d0%b0-%d0%bd%d0%b0-%d1%81%d0%b8%d0%b4/">Разочарования</a></li>
+            <li class="nav-list-item btn btn-github"><a href="https://github.com/donetian-petkov">Моите GitHub Проекти <i class="fab fa-github"></i></a></li>
+        </ul>
+    </nav>
+</header>
+<section class="details-about-me">
+    <article class="details-about-me-image">
+        <img src="https://lh3.googleusercontent.com/a-/AOh14GizfRHouWEmdGyP7VAvTi2pKl-zz0OwFTeai0Of=s576-p-rw-no">
+    </article>
+    <article class="details-about-me-content">
+        <h2 class="details-about-me-content-title">За Мен</h2>
+        <p class="details-about-me-content-text">Казвам се Донетиан Петков и съм огромен киноман. <button class="details-about-me-content-text-button" onclick="buttonToggle()">Кой съм аз?</button></p>
+        <div id="details-about-me-content-text-hidden">
+                Аз съм момчето, което прекара 8-ми и 9-ти клас, гледайки Top 250 на imdb, слуша постоянно аудио рецензии на филми, докато яде, когато се наслаждава на хубава музика си представя сцени във всякакви жанрове, аз съм този, който понякога пише сценарии в главата си, които след това се сбъдват, или иначе казано: обичам филмите!
+        </div>
+    </article>
+</section>
+<section class="image-gallery">
+    <div class="image-gallery-content">
+        <img class="image-gallery-content-img" src="https://www.donetianpetkov.com/wp-content/uploads/2022/01/10865889_10203478324824437_4574203316418948521_o.jpeg">
+        <img class="image-gallery-content-img" src="https://www.donetianpetkov.com/wp-content/uploads/2022/01/10865854_10203476493698660_7587337841044446339_o-e1643584515526.jpeg">
+        <img class="image-gallery-content-img" src="https://www.donetianpetkov.com/wp-content/uploads/2022/01/216185074_10219857481373114_2176949543197123174_n.jpeg">
+        <blockquote class="image-gallery-content-text">
+            <q>But the cinephile is … a neurotic! (That’s not a pejorative term.) The Bronte sisters were neurotic, and it’s because they were neurotic that they read all those books and became writers. The famous French advertising slogan that says, “When you love life, you go to the movies,” it’s false! It’s exactly the opposite: when you don’t love life, or when life doesn’t give you satisfaction, you go to the movies.</q>
+            <figcaption>
+                &mdash; François Truffaut  </figcaption>
+        </blockquote>
+        <blockquote class="image-gallery-content-text-2">
+            <q>The cinema began with a passionate, physical relationship between celluloid and the artists and craftsmen and technicians who handled it, manipulated it, and came to know it the way a lover comes to know every inch of the body of the beloved. No matter where the cinema goes, we cannot afford to lose sight of its beginnings.
+            </q>
+            <figcaption>
+                &mdash; Martin Scorsese </figcaption>
+        </blockquote>
+    </div>
+</section>
+<section class="movies-reviewed">
+    <label for="movies-reviewed-dropdown"><h2 class="movies-reviewed-dropdown">Tърси в моите рецензии:</h2></label>
+    <select class="movies-reviewed-dropdown" id="movies-reviewed-dropdown">
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-zero" value="0">Избери Филм:</option>
+    <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-rogue-one" value="star-wars-rogue-one">Star Wars: Rogue One</option>
+    <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-stranger-things" value="stranger-things">Stranger Things</option>
+    <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-spider-man" value="spider-man-into-the-spider-verse">Spider-Man: Into the Spider-Verse</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-the-nice-guys" value="the-nice-guys">The Nice Guys</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-captain-america-civil-war" value="captain-america-civil-war">Captain America: Civil War</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-la-la-land" value="la-la-land">La La Land</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-blade-runner-2049" value="blade-runner-2049">Blade Runner 2049</option>
+    </select>
+    <div id="movies-reviewed-text">
+        <p>Тук ще се появи рецензията!</p>
+    </div>
+        <button class="movies-reviewed-text-clear-btn" onclick="clearText()">Изчисти Текста</button>
+</section>
+</body>
+<footer>
+    <article class="footer-column">
+        <div class="social-media-icons">
+            <a href="https://www.facebook.com/rodger.nicklost/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/DonetianP"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/dokkyto/"><i class="fab fa-instagram"></i></a>
+        </div>
+    </article>
+</footer>
+<script type="text/javascript" src="script.js"></script>
+<script>window.onload = dropdownToggle();</script>
+<script>window.onload= slideshow()</script>
+</html>

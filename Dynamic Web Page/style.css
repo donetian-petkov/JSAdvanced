@@ -1,0 +1,215 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    color: black;
+    background: white;
+}
+
+.logo-wrapper img{
+    width:100px;
+    height:100px;
+    box-shadow: 0px 10px 20px -11px white;
+}
+
+header {
+    display:flex;
+    padding: 15px 5%;
+    justify-content: space-between;
+    box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.75);
+    align-items:center;
+    background:black;
+    color:white;
+}
+
+header nav ul{
+    display: flex;
+    align-items:center;
+}
+
+.nav-list-item {
+    list-style: none;
+    margin: 0 10px;
+}
+
+.nav-list-item a{
+    text-decoration: none;
+    font-size:15px;
+    color:white;
+}
+
+.nav-list-item a:link{
+    color:white;
+}
+
+.nav-list-item a:visited{
+    color:grey;
+}
+
+.nav-list-item a:hover{
+    color: grey;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.details-about-me {
+    display: flex;
+    padding:50px 5%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details-about-me-content {
+    flex-basis:75%;
+    color:white;
+    background:black;
+    border-radius: 20px;
+    padding:10px;
+    box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.75);
+}
+
+.details-about-me-image {
+    display: flex;
+    align-items: center;
+    background-color:black;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.75);
+}
+
+.details-about-me-image img {
+    width:200px;
+    height:200px;
+    position:relative;
+    left:50px;
+    border-radius: 10%;
+}
+
+#details-about-me-content-text-hidden {
+    display: none;
+}
+
+.details-about-me-content-text-button{
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.movies-reviewed {
+    padding: 20px;
+    border: solid 2px white;
+    border-radius:50px;
+    background: black;
+}
+
+.movies-reviewed-search {
+    display: flex;
+    padding:20px 5%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#movies-reviewed-text{
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    color: white;
+    border-radius: 50px;
+    border: solid 1px white;
+}
+
+#movies-reviewed-dropdown {
+    background-color: black;
+    color:white;
+    border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    line-height: 1.5em;
+    padding: 0.5em 3.5em 0.5em 1em;
+}
+
+.movies-reviewed-text-clear-btn{
+    background: black;
+    color:white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 50px;
+    border: solid 1px white;
+}
+
+.movies-reviewed-dropdown {
+    color:white;
+}
+
+.image-gallery {
+    display: inline-flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.image-gallery-content img{
+    width:500px;
+    height:500px;
+    padding:15px;
+    border: solid black 5px;
+    border-radius: 20px;
+    float:right;
+    margin: 0px 0px 15px 15px;
+}
+
+.image-gallery-content-text{
+   text-align: center;
+    margin-top:100px;
+    margin-left:200px;
+    margin-right:750px;
+    box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.75);
+}
+
+.image-gallery-content-text-2{
+    text-align: center;
+    margin-top:50px;
+    margin-left:200px;
+    margin-right:750px;
+    box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.75);
+}
+
+footer {
+    background: black;
+    display: flex;
+    padding: 50px 5%;
+    justify-content: space-between;
+    color:white;
+}
+
+footer ul {
+    padding: 0;
+}
+
+footer ul li {
+    list-style: none;
+    padding: 5px 0;
+}
+
+.social-media-icons i {
+    font-size:35px;
+    margin:13px;
+    color:white;
+}
+
