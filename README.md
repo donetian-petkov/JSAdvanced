@@ -1,8 +1,8 @@
 # JSAdvanced
 
-01. Syntax
-02. Array
-03. Object
+01. Syntax, Functions and Statements
+02. Arrays and Nested Arrays
+03. Objects and Composition
 04. DOM
 05. DOM Manipulation (Create and Append HTML Elements, add Event Listeners, etc)
 
