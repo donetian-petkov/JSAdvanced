@@ -49,6 +49,17 @@
         </blockquote>
     </div>
 </section>
+<section class="get-movie-by-box-office">
+    <div class="get-movie-by-box-office-content">
+        <label for="get-movie-by-box-office-search">Задай бокс офис печалба и ще ти изкарам всички филми сред Топ 200, които имат по-голяма печалба:  </label>
+        <input type="text" id="get-movie-by-box-office-search">
+        <input id="get-movie-by-box-office-search-button" type="button" value="Потърси">
+        <input id="get-movie-by-box-office-clear-button" type="button" value="Почисти">
+    </div>
+        <table>
+            <tbody id="get-movie-by-box-office-output"></tbody>
+        </table>
+</section>
 <section class="movies-reviewed">
     <label for="movies-reviewed-dropdown"><h2 class="movies-reviewed-dropdown">Tърси в моите рецензии:</h2></label>
     <select class="movies-reviewed-dropdown" id="movies-reviewed-dropdown">
@@ -79,4 +90,6 @@
 <script type="text/javascript" src="script.js"></script>
 <script>window.onload = dropdownToggle();</script>
 <script>window.onload= slideshow()</script>
+<script>window.onload=searchBoxOffice()</script>
+<script>window.onload=clearBoxOffice()</script>
 </html>
