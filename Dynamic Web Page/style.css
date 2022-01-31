@@ -171,7 +171,7 @@ header nav ul{
     border: solid black 5px;
     border-radius: 20px;
     float:right;
-    margin: 0px 0px 15px 15px;
+    margin-right:100px;
 }
 
 .image-gallery-content-text{
