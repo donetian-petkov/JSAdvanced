@@ -234,6 +234,12 @@ footer ul li {
     margin: 1rem auto;
 }
 
+#get-movie-by-box-office-search-button , #get-movie-by-box-office-clear-button, #get-movie-by-box-office-search {
+    border-radius:15px;
+    background: white;
+    border: solid white 5px;
+}
+
 tbody tr:nth-child(odd) {
     background:white;
     color:black;
