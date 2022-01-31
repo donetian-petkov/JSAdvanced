@@ -24,21 +24,16 @@ function dropdownToggle() {
 
         let URI = event.target.value;
 
-       let text = fetch('https://www.donetianpetkov.com/' + URI).then(function (response) {
-            // The API call was successful!
-            return response.text();
-        }).then(function (html) {
-            // This is the HTML from our response as a text string
+       fetch('https://www.donetianpetkov.com/' + URI)
+           .then(response => response.text())
+           .then(function (html) {
             let parser = new DOMParser();
             let doc = parser.parseFromString(html, 'text/html');
 
             div.innerHTML+=doc.getElementsByClassName('entry-content')[0].innerHTML;
 
-        }).catch(function (err) {
-            // There was an error
-            console.warn('Something went wrong.', err);
-        });
-
+        })
+           .catch(error => console.log('Could not get URL', error));
     }
 }
 
