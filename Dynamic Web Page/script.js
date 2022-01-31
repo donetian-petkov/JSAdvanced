@@ -69,8 +69,16 @@ function searchBoxOffice(){
 
     let searchButton = document.getElementById('get-movie-by-box-office-search-button');
     let table = document.getElementById('get-movie-by-box-office-output');
+    let inputField = document.getElementById('get-movie-by-box-office-search');
+
 
     searchButton.addEventListener('click', boxOfficeInfo);
+    inputField.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            searchButton.click();
+        }
+    });
 
     function boxOfficeInfo(event){
 
