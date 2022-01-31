@@ -64,3 +64,61 @@ function slideshow() {
         setTimeout(carousel, 5000); // Change image every 2 seconds
     }
 }
+
+function searchBoxOffice(){
+
+    let searchButton = document.getElementById('get-movie-by-box-office-search-button');
+    let table = document.getElementById('get-movie-by-box-office-output');
+
+    searchButton.addEventListener('click', boxOfficeInfo);
+
+    function boxOfficeInfo(event){
+
+        table.innerHTML='';
+
+        let searchNumber = Number(event.target.parentElement.querySelector('input[type="text"]').value);
+
+        const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_ar5ghwn9', requestOptions)
+            .then(response => response.text())
+            .then(function (jsonData) {
+                let jsonObjects = JSON.parse(jsonData).items;
+
+                for (let object of jsonObjects) {
+                    let tr = "<tr>";
+                    let boxOfficeInput = object.worldwideLifetimeGross.substring(1);
+                    let boxOffice = Number(boxOfficeInput.replace(/,/g, ''));
+
+                    if (boxOffice >= searchNumber){
+
+                        tr += "<td>" + object.title + "</td>" + "<td>" + object.worldwideLifetimeGross + "</td></tr>";
+
+                        table.innerHTML += tr;
+
+                    }
+                }
+
+            })
+            .catch(error => console.log('error', error));
+
+    }
+}
+
+function clearBoxOffice() {
+
+    let clearButton = document.getElementById('get-movie-by-box-office-clear-button');
+    let table = document.getElementById('get-movie-by-box-office-output');
+
+    clearButton.addEventListener('click', clearArea);
+
+    function clearArea() {
+        table.innerHTML='';
+    }
+
+
+
+}
