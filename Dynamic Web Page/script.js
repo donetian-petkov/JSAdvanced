@@ -79,14 +79,15 @@ function searchBoxOffice(){
 
         table.innerHTML='';
 
-        let searchNumber = Number(event.target.parentElement.querySelector('input[type="text"]').value);
+        let input = event.target.parentElement.querySelector('input[type="text"]').value;
 
-        const requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
+        if(input.includes(',')){
+            input=input.replace(/,/g, '');
+        }
 
-        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02', requestOptions)
+        let searchNumber = Number(input);
+
+        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02)
             .then(response => response.text())
             .then(function (jsonData) {
                 let jsonObjects = JSON.parse(jsonData).items;
