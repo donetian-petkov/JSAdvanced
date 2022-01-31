@@ -180,6 +180,7 @@ header nav ul{
     margin-left:200px;
     margin-right:750px;
     box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.75);
+    border-radius:15px;
 }
 
 .image-gallery-content-text-2{
@@ -188,6 +189,7 @@ header nav ul{
     margin-left:200px;
     margin-right:750px;
     box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.75);
+    border-radius:15px;
 }
 
 footer {
