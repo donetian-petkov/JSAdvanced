@@ -87,7 +87,7 @@ function searchBoxOffice(){
 
         let searchNumber = Number(input);
 
-        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02)
+        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_ar5ghwn9')
             .then(response => response.text())
             .then(function (jsonData) {
                 let jsonObjects = JSON.parse(jsonData).items;
