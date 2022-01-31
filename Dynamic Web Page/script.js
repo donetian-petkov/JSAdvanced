@@ -83,7 +83,7 @@ function searchBoxOffice(){
             redirect: 'follow'
         };
 
-        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_ar5ghwn9', requestOptions)
+        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02', requestOptions)
             .then(response => response.text())
             .then(function (jsonData) {
                 let jsonObjects = JSON.parse(jsonData).items;
