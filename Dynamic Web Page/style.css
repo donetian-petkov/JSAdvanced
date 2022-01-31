@@ -213,3 +213,35 @@ footer ul li {
     color:white;
 }
 
+
+.get-movie-by-box-office {
+    width: 44%;
+    margin: 2rem auto;
+    text-align: center;
+    background: black;
+    color:white;
+    padding: 1rem;
+    border-radius: 20px;
+}
+
+.get-movie-by-box-office label, .get-movie-by-box-office input {
+    display: block;
+}
+
+.get-movie-by-box-office input {
+    text-align: center;
+    width: 50%;
+    margin: 1rem auto;
+}
+
+tbody tr:nth-child(odd) {
+    background:white;
+    color:black;
+}
+
+tbody tr:nth-child(even) {
+    background:black;
+    color:white;
+}
+
+
