@@ -56,7 +56,7 @@ function slideshow() {
         myIndex++;
         if (myIndex > x.length) {myIndex = 1}
         x[myIndex-1].style.display = "flex";
-        setTimeout(carousel, 5000); // Change image every 2 seconds
+        setTimeout(carousel, 5000); 
     }
 }
 
@@ -83,6 +83,13 @@ function searchBoxOffice(){
 
         if(input.includes(',')){
             input=input.replace(/,/g, '');
+        }
+        
+        let regex = /[a-zA-Z]/;
+
+        if (regex.test(input)){
+            console.log("The input must be a number!");
+            return;
         }
 
         let searchNumber = Number(input);
