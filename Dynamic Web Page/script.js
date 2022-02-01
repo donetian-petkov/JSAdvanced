@@ -56,16 +56,15 @@ function slideshow() {
         myIndex++;
         if (myIndex > x.length) {myIndex = 1}
         x[myIndex-1].style.display = "flex";
-        setTimeout(carousel, 5000); 
+        setTimeout(carousel, 5000); // Change image every 2 seconds
     }
 }
 
 function searchBoxOffice(){
 
-    let searchButton = document.getElementById('get-movie-by-box-office-search-button');
-    let table = document.getElementById('get-movie-by-box-office-output');
-    let inputField = document.getElementById('get-movie-by-box-office-search');
-
+    let searchButton = document.getElementById('get-movie-by-box-office-boxoffice-button');
+    let table = document.getElementById('get-movie-by-box-office-boxoffice-output');
+    let inputField = document.getElementById('get-movie-by-box-office-boxoffice-input');
 
     searchButton.addEventListener('click', boxOfficeInfo);
     inputField.addEventListener("keyup", function(event) {
@@ -84,7 +83,7 @@ function searchBoxOffice(){
         if(input.includes(',')){
             input=input.replace(/,/g, '');
         }
-        
+
         let regex = /[a-zA-Z]/;
 
         if (regex.test(input)){
@@ -106,30 +105,127 @@ function searchBoxOffice(){
 
                     if (boxOffice >= searchNumber){
 
-                        tr += "<td>" + object.title + "</td>" + "<td>" + object.worldwideLifetimeGross + "</td></tr>";
+                        tr += "<td>" + object.rank + "</td>" + "<td>" + object.title + "</td>" + "<td>" + object.worldwideLifetimeGross + "</td></tr>";
 
                         table.innerHTML += tr;
-
                     }
                 }
 
             })
-            .catch(error => console.log('error', error));
+            .catch(error => console.log('Could not get URL', error));
 
     }
 }
 
-function clearBoxOffice() {
+function searchMovie(){
+    let searchButton = document.getElementById('get-movie-by-box-office-movie-button');
+    let table = document.getElementById('get-movie-by-box-office-movie-output');
+    let inputField = document.getElementById('get-movie-by-box-office-movie-input');
 
-    let clearButton = document.getElementById('get-movie-by-box-office-clear-button');
-    let table = document.getElementById('get-movie-by-box-office-output');
+    searchButton.addEventListener('click', search);
+    inputField.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            searchButton.click();
+        }
+    });
 
-    clearButton.addEventListener('click', clearArea);
+    function search(event){
 
-    function clearArea() {
         table.innerHTML='';
+
+        let input = event.target.parentElement.querySelector('input[type="text"]').value;
+
+        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_ar5ghwn9')
+            .then(response => response.text())
+            .then(function (jsonData) {
+                let jsonObjects = JSON.parse(jsonData).items;
+                let tr = "<tr>";
+
+                for (let object of jsonObjects) {
+
+                    let movie = object.title;
+
+                    if (movie.toLowerCase() === input.toLowerCase()){
+
+                        tr += "<td>" + object.rank + "</td>" + "<td>" + object.title + "</td>" + "<td>" + object.worldwideLifetimeGross + "<td>" + object.year + "</td>" + "</td></tr>";
+
+
+                    }
+                }
+
+                table.innerHTML += tr;
+
+            })
+            .catch(error => console.log('Could not get URL', error));
     }
 
+}
 
+function searchYear(){
+    let searchButton = document.getElementById('get-movie-by-box-office-year-button');
+    let table = document.getElementById('get-movie-by-box-office-year-output');
+    let inputField = document.getElementById('get-movie-by-box-office-year-input');
 
+    searchButton.addEventListener('click', search);
+
+    inputField.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            searchButton.click();
+        }
+    });
+
+    function search(event){
+
+        table.innerHTML='';
+
+        let input = event.target.parentElement.querySelector('input[type="text"]').value;
+
+        let regex = /[a-zA-Z]/;
+
+        if (regex.test(input)){
+            console.log("The input must be a number!");
+            return;
+        }
+
+        let searchYear = Number(input);
+
+        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_ar5ghwn9')
+            .then(response => response.text())
+            .then(function (jsonData) {
+                let jsonObjects = JSON.parse(jsonData).items;
+                let tr = "<tr>";
+
+                for (let object of jsonObjects) {
+
+                    let year = Number(object.year);
+
+                    if (year === searchYear){
+
+                        tr += "<td>" + object.rank + "</td>" + "<td>" + object.title + "</td>" + "<td>" + object.year + "</td></tr>";
+
+                    }
+                }
+
+                table.innerHTML += tr;
+
+            })
+            .catch(error => console.log('Could not get URL', error));
+    }
+
+}
+
+function clearField() {
+    let clearButtons = document.querySelectorAll('[id$="clear"]');
+
+    for (let button of clearButtons) {
+        button.addEventListener('click', clear);
+    }
+
+    function clear(event){
+        let parentElement = event.target.parentElement.querySelector('[id$="output"]');
+
+        parentElement.innerHTML='';
+    }
 }

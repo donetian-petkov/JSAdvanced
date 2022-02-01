@@ -8,15 +8,35 @@ body {
     background: white;
 }
 
+button:hover, input:hover{
+    box-shadow: 0px 10px 20px -11px white;
+    cursor:pointer;
+}
+
+tbody tr:nth-child(odd) {
+    background:white;
+    color:black;
+}
+
+tbody tr:nth-child(even) {
+    background:black;
+    color:white;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
+    height:fit-content;
+}
+
 .logo-wrapper img{
     width:100px;
     height:100px;
     box-shadow: 0px 10px 20px -11px white;
-}
-
-button:hover, input:hover{
-    box-shadow: 0px 10px 20px -11px white;
-    cursor:pointer;
 }
 
 header {
@@ -176,7 +196,7 @@ header nav ul{
     border: solid black 5px;
     border-radius: 20px;
     float:right;
-    margin-right:100px;
+    margin-right: 100px;
 }
 
 .image-gallery-content-text{
@@ -185,7 +205,7 @@ header nav ul{
     margin-left:200px;
     margin-right:750px;
     box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.75);
-    border-radius:15px;
+    border-radius: 15px;
 }
 
 .image-gallery-content-text-2{
@@ -222,7 +242,9 @@ footer ul li {
 
 
 .get-movie-by-box-office {
-    width: 44%;
+    display:flex;
+    justify-content: space-between;
+    width: 90%;
     margin: 2rem auto;
     text-align: center;
     background: black;
@@ -231,30 +253,23 @@ footer ul li {
     border-radius: 20px;
 }
 
-.get-movie-by-box-office label, .get-movie-by-box-office input {
-    display: block;
-}
-
 .get-movie-by-box-office input {
+    display: block;
+    border-radius:15px;
+    background: white;
+    border: solid white 5px;
+    color:black;
     text-align: center;
     width: 50%;
     margin: 1rem auto;
 }
 
-#get-movie-by-box-office-search-button , #get-movie-by-box-office-clear-button, #get-movie-by-box-office-search {
-    border-radius:15px;
-    background: white;
-    border: solid white 5px;
+.get-movie-by-box-office label {
+    margin-left:25px;
+    margin-right:25px;
+    text-align: center;
+    width:fit-content;
 }
 
-tbody tr:nth-child(odd) {
-    background:white;
-    color:black;
-}
-
-tbody tr:nth-child(even) {
-    background:black;
-    color:white;
-}
 
 

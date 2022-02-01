@@ -51,14 +51,34 @@
 </section>
 <section class="get-movie-by-box-office">
     <div class="get-movie-by-box-office-content">
-        <label for="get-movie-by-box-office-search">Задай бокс офис печалба и ще ти изкарам всички филми сред Топ 200, които имат по-голяма печалба:  </label>
-        <input type="text" id="get-movie-by-box-office-search">
-        <input id="get-movie-by-box-office-search-button" type="button" value="Потърси">
-        <input id="get-movie-by-box-office-clear-button" type="button" value="Почисти">
-    </div>
+        <label for="get-movie-by-box-office-boxoffice-input">Задай бокс офис печалба и ще ти покажа всички филми сред Топ 200, които имат по-голяма печалба:  </label>
+        <input type="text" id="get-movie-by-box-office-boxoffice-input" placeholder="В долари">
+        <input id="get-movie-by-box-office-boxoffice-button" type="button" value="Потърси">
+        <input id="get-movie-by-box-office-boxoffice-clear" type="button" value="Почисти">
         <table>
-            <tbody id="get-movie-by-box-office-output"></tbody>
+            <tbody id="get-movie-by-box-office-boxoffice-output"></tbody>
         </table>
+    </div>
+
+    <div class="get-movie-by-box-office-content">
+        <label for="get-movie-by-box-office-movie-input">Потърси дали филм е сред Топ 200  </label>
+        <input type="text" id="get-movie-by-box-office-movie-input">
+        <input id="get-movie-by-box-office-movie-button" type="button" value="Потърси">
+        <input id="get-movie-by-box-office-movie-clear" type="button" value="Почисти">
+        <table>
+            <tbody id="get-movie-by-box-office-movie-output"></tbody>
+        </table>
+    </div>
+
+    <div class="get-movie-by-box-office-content">
+        <label for="get-movie-by-box-office-year-input"> Задай година и ще ти покажа дали има филми през нея, които са сред Топ 200 </label>
+        <input type="text" id="get-movie-by-box-office-year-input">
+        <input id="get-movie-by-box-office-year-button" type="button" value="Потърси">
+        <input id="get-movie-by-box-office-year-clear" type="button" value="Почисти">
+        <table>
+            <tbody id="get-movie-by-box-office-year-output"></tbody>
+        </table>
+    </div>
 </section>
 <section class="movies-reviewed">
     <label for="movies-reviewed-dropdown"><h2 class="movies-reviewed-dropdown">Tърси в моите рецензии:</h2></label>
@@ -91,5 +111,7 @@
 <script>window.onload = dropdownToggle();</script>
 <script>window.onload= slideshow()</script>
 <script>window.onload=searchBoxOffice()</script>
-<script>window.onload=clearBoxOffice()</script>
+<script>window.onload=searchMovie()</script>
+<script>window.onload=searchYear()</script>
+<script>window.onload=clearField()</script>
 </html>
