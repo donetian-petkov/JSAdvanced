@@ -271,5 +271,10 @@ footer ul li {
     width:fit-content;
 }
 
+@media all and (max-width:1100px) {
+    .image-gallery-content-text , .image-gallery-content-text-2 {
+        display:none;
+    }
+}
 
 
