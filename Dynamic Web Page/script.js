@@ -20,6 +20,8 @@ function dropdownToggle() {
 
     document.getElementById('movies-reviewed-dropdown').addEventListener('change',  searchMovie);
     let div = document.getElementById('movies-reviewed-text');
+    let clearButton = document.querySelector('.movies-reviewed-text-clear-btn');
+
 
     function searchMovie(event){
 
@@ -34,6 +36,8 @@ function dropdownToggle() {
             let doc = parser.parseFromString(html, 'text/html');
 
             div.innerHTML+=doc.getElementsByClassName('entry-content')[0].innerHTML;
+           div.style.display = 'inline-block';
+            clearButton.style.display='inline-block';
 
         })
            .catch(error => console.log('Could not get URL', error));
@@ -42,7 +46,11 @@ function dropdownToggle() {
 
 function clearText() {
     let div = document.getElementById('movies-reviewed-text');
-    div.textContent = 'Тук ще се появи рецензията!';
+    let clearButton = document.querySelector('.movies-reviewed-text-clear-btn');
+
+    div.textContent = '';
+    div.style.display = 'none';
+    clearButton.style.display = 'none';
 }
 
 function slideshow() {
