@@ -36,7 +36,7 @@ function dropdownToggle() {
             let doc = parser.parseFromString(html, 'text/html');
 
             div.innerHTML+=doc.getElementsByClassName('entry-content')[0].innerHTML;
-           div.style.display = 'inline-block';
+            div.style.display = 'inline-block';
             clearButton.style.display='inline-block';
 
         })
@@ -104,7 +104,7 @@ function searchBoxOffice(){
 
         let searchNumber = Number(input);
 
-        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_ar5ghwn9')
+        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02')
             .then(response => response.text())
             .then(function (jsonData) {
                 let jsonObjects = JSON.parse(jsonData).items;
@@ -147,7 +147,7 @@ function searchMovie(){
 
         let input = event.target.parentElement.querySelector('input[type="text"]').value;
 
-        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_ar5ghwn9')
+        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02')
             .then(response => response.text())
             .then(function (jsonData) {
                 let jsonObjects = JSON.parse(jsonData).items;
@@ -202,7 +202,7 @@ function searchYear(){
 
         let searchYear = Number(input);
 
-        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_ar5ghwn9')
+        fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02')
             .then(response => response.text())
             .then(function (jsonData) {
                 let jsonObjects = JSON.parse(jsonData).items;
@@ -237,12 +237,15 @@ function clearField() {
     function clear(event){
         let parentElement = event.target.parentElement.querySelector('[id$="output"]');
 
+        if (event.target.id === 'comment-section-clear') {
+            document.getElementById('comment-section-show-button').style.display = 'block';
+            event.target.style.display='none';
+        }
+
         parentElement.innerHTML='';
     }
 }
-
-
-    function scrollFunction() {
+   function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             topButton.style.display = "block";
         } else {
@@ -253,4 +256,46 @@ function clearField() {
     function topFunction() {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+function showComments() {
+    let output = document.getElementById('comment-section-output');
+    let showButton = document.getElementById('comment-section-show-button');
+    let clearButton = document.getElementById('comment-section-clear');
+    showButton.addEventListener('click',listComments);
+
+    function listComments(){
+        fetch('listComments.php', {
+            method: 'POST'
+        })
+            .then(response => response.text())
+            .then(data => output.innerHTML += data);
+
+        output.style.display='block';
+        showButton.style.display='none';
+        clearButton.style.display='block';
+    }
+
+}
+
+function addComments(){
+    let name = document.getElementById('comment-section-name');
+    let comment = document.getElementById('comment-section-textarea');
+
+    let url = 'addComment.php';
+    let formData = new FormData();
+     formData.append('name', name.value);
+     formData.append('content', comment.value);
+
+
+    fetch(url, { method: 'POST', body: formData })
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (body) {
+            console.log(body);
+        });
+
+    name.value='';
+    comment.value='';
 }

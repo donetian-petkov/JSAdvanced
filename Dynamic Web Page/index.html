@@ -21,7 +21,7 @@
 </header>
 <section class="details-about-me">
     <article class="details-about-me-image">
-        <img src="https://lh3.googleusercontent.com/a-/AOh14GizfRHouWEmdGyP7VAvTi2pKl-zz0OwFTeai0Of=s576-p-rw-no">
+        <img src="https://www.donetianpetkov.com/wp-content/uploads/2022/02/10900179_10203476492898640_7297641640113967879_o-e1643791217120.jpeg">
     </article>
     <article class="details-about-me-content">
         <h2 class="details-about-me-content-title">За Мен</h2>
@@ -93,9 +93,22 @@
         <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-blade-runner-2049" value="blade-runner-2049">Blade Runner 2049</option>
     </select>
     <div id="movies-reviewed-text">
-        <p>Тук ще се появи рецензията!</p>
     </div>
         <button class="movies-reviewed-text-clear-btn" onclick="clearText()">Изчисти Текста</button>
+</section>
+
+<section class="comment-section">
+    <form onsubmit="return addComments()" method="post" target="dummyframe">
+    <label for="comment-section-textarea"><h2 class="comment-section-label">Напиши коментар за сайта:</h2></label>
+    <input type="text" class="comment-section-name" id="comment-section-name" name="name" placeholder="Твоето Име"></input>
+    <textarea type="text" class="comment-section-input" id="comment-section-textarea" name="content" placeholder="....."></textarea>
+    <input id="comment-section-textarea-button" type="submit" value="Добави">
+        <input id="comment-section-show-button" type="button" value="Покажи Коментари">
+    <div id="comment-section-output">
+    </div>
+        <input id="comment-section-clear" type="button" value="Скрий Коментари">
+        <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+    </form>
 </section>
 </body>
 <footer>
@@ -115,4 +128,5 @@
 <script>window.onload=searchMovie()</script>
 <script>window.onload=searchYear()</script>
 <script>window.onload=clearField()</script>
+<script>window.onload = showComments();</script>
 </html>
