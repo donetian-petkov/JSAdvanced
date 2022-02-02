@@ -1,3 +1,6 @@
+let topButton = document.getElementById("goToTop");
+window.onscroll = function() {scrollFunction()};
+
 function buttonToggle() {
     let button  = document.querySelector('.details-about-me-content-text-button');
     let text = document.querySelector('#details-about-me-content-text-hidden');
@@ -228,4 +231,18 @@ function clearField() {
 
         parentElement.innerHTML='';
     }
+}
+
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
