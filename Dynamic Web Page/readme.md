@@ -1,4 +1,4 @@
-To submit and view comments you must set up a valid database connection in the connection.php to a database, which contains the following table: 
+To submit and view comments you must set up a valid database connection in the connect.php to a database, which contains the following table: 
 
 CREATE TABLE IF NOT EXISTS `comments` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
