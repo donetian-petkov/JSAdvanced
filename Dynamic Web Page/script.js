@@ -281,6 +281,14 @@ function showComments() {
 function addComments(){
     let name = document.getElementById('comment-section-name');
     let comment = document.getElementById('comment-section-textarea');
+    
+     if (name.value === '') {
+        name.placeholder = 'Моля въведете си името!'
+        return;
+    } else if (comment.value === '') {
+        comment.placeholder = 'Не можете да изпратите празен коментар!';
+        return;
+    }
 
     let url = 'addComment.php';
     let formData = new FormData();
