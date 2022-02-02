@@ -137,6 +137,7 @@ header nav ul{
     border: solid 2px white;
     border-radius:50px;
     background: black;
+    text-align: center;
 }
 
 .movies-reviewed-search {
@@ -147,10 +148,10 @@ header nav ul{
 }
 
 #movies-reviewed-text{
+    display:none;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     color: white;
@@ -169,17 +170,18 @@ header nav ul{
 }
 
 .movies-reviewed-text-clear-btn{
+    display: none;
     background: black;
     color:white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     border-radius: 50px;
     border: solid 1px white;
 }
+
 
 .movies-reviewed-dropdown {
     color:white;
