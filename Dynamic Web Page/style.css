@@ -70,7 +70,8 @@ header nav ul{
 }
 
 .nav-list-item a:visited{
-    color:grey;
+    color:white;
+    text-decoration: underline;
 }
 
 .nav-list-item a:hover{
