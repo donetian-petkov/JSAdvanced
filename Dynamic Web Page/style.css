@@ -31,6 +31,8 @@ table {
     border-spacing: 2px;
     border-color: grey;
     height:fit-content;
+    align-items: center;
+    margin: auto;
 }
 
 .logo-wrapper img{
@@ -351,6 +353,13 @@ footer ul li {
     border-radius:15px;
 }
 
+.comment-section-comment-none-found {
+    background:white;
+    border:solid black 1px;
+    border-radius:15px;
+    text-align: center;
+}
+
 .comment-section-info h5{
     margin: 5px;
 }
@@ -373,5 +382,3 @@ footer ul li {
         display:none;
     }
 }
-
-
