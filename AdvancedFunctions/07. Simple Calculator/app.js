@@ -20,7 +20,7 @@ function calculator() {
         result.value = Number(input1.value) - Number(input2.value);
     }
 
-    return obj = {
+    return {
         init,
         add,
         subtract
@@ -28,6 +28,5 @@ function calculator() {
 
 }
 
-
-
-
+const calculate = calculator ();
+calculate.init ('#num1', '#num2', '#result');
