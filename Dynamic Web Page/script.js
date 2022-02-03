@@ -339,4 +339,5 @@ function addComments(){
 
     name.value='';
     comment.value='';
+    comment.placeholder='....';
 }
