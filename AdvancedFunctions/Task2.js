@@ -14,9 +14,7 @@ function argumentInformation() {
     });
 
     Object.keys(data)
-        .sort((a,b) => {
-            return data[b] - data[a]
-        })
+        .sort((a,b) => data[b] - data[a])
         .forEach((key) => console.log(`${key} = ${data[key]}`));
 }
 
