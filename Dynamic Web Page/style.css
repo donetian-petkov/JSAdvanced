@@ -149,7 +149,7 @@ header nav ul{
     align-items: center;
 }
 
-#movies-reviewed-text{
+#movies-reviewed-text-output{
     display:none;
     padding: 15px 32px;
     text-align: center;
@@ -171,7 +171,7 @@ header nav ul{
     padding: 0.5em 3.5em 0.5em 1em;
 }
 
-.movies-reviewed-text-clear-btn{
+#movies-reviewed-text-clear {
     display: none;
     background: black;
     color:white;
@@ -276,6 +276,10 @@ footer ul li {
     width:fit-content;
 }
 
+#get-movie-by-box-office-boxoffice-clear , #get-movie-by-box-office-movie-clear, #get-movie-by-box-office-year-clear {
+    display:none;
+}
+
 #goToTop {
     display: none;
     position: fixed;
@@ -308,6 +312,7 @@ footer ul li {
 .comment-section-input{
     width: 608px;
     height: 114px;
+    font-size:18px;
 }
 
 #comment-section-textarea-button, #comment-section-show-button{
