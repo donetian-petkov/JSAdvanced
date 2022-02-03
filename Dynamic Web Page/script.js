@@ -339,5 +339,6 @@ function addComments(){
 
     name.value='';
     comment.value='';
+    name.placeholder='Твоето Име';
     comment.placeholder='....';
 }
