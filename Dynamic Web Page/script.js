@@ -1,9 +1,32 @@
 let topButton = document.getElementById("goToTop");
 window.onscroll = function() {scrollFunction()};
 
+function clearField() {
+    let clearButtons = document.querySelectorAll('[id$="clear"]'); // we get all of the elements which id's end with the 'clear' string
+
+    for (let button of clearButtons) {
+        button.addEventListener('click', clear); // we set eventListeners on each found element
+    }
+
+    function clear(event){
+        let parentElement = event.target.parentElement.querySelector('[id$="output"]'); // we get all of the elements which id's end with the 'output' string
+
+        // some additional steps for the comment section clear button - we hide the clear button and instead show the button that displays the comments
+        if (event.target.id === 'comment-section-clear') {
+            document.getElementById('comment-section-show-button').style.display = 'block';
+            event.target.style.display='none';
+        }
+
+        parentElement.innerHTML='';
+        parentElement.style.display='none';
+        event.target.style.display='none';
+    }
+}
+
+
 function buttonToggle() {
-    let button  = document.querySelector('.details-about-me-content-text-button');
-    let text = document.querySelector('#details-about-me-content-text-hidden');
+    let button  = document.querySelector('.details-about-me-content-text-button'); // we need the button to change its textContent
+    let text = document.querySelector('#details-about-me-content-text-hidden'); // we get the text which by default has its display to none to hide it
 
     if (button.textContent === "Кой съм аз?") {
         button.textContent = "Прочети по-малко";
@@ -18,39 +41,31 @@ function buttonToggle() {
 
 function dropdownToggle() {
 
-    document.getElementById('movies-reviewed-dropdown').addEventListener('change',  searchMovie);
-    let div = document.getElementById('movies-reviewed-text');
-    let clearButton = document.querySelector('.movies-reviewed-text-clear-btn');
+    document.getElementById('movies-reviewed-dropdown').addEventListener('change',  searchMovie); // we set an eventListener to the dropdown menu, which upon click should execute the searchMovie function
+    let div = document.getElementById('movies-reviewed-text-output'); // we get the div where we will post the review
+    let clearButton = document.querySelector('#movies-reviewed-text-clear'); // we get the clear button which by default has its display set to none
 
 
     function searchMovie(event){
 
-        div.textContent = '';
+        div.textContent = ''; // we reset the content in the div where the reviews are posted
 
-        let URI = event.target.value;
+        let URI = event.target.value; // we get the URI from the value of the dropdown options as they resemble the URI's of the reviews' pages
 
+        // we work with DOMParser here as the fetched data is HTML
        fetch('https://www.donetianpetkov.com/' + URI)
            .then(response => response.text())
-           .then(function (html) {
+           .then( (html) => {
             let parser = new DOMParser();
-            let doc = parser.parseFromString(html, 'text/html');
+            let doc = parser.parseFromString(html, 'text/html'); // we parse the received text (html) to HTML to easily manage it
 
-            div.innerHTML+=doc.getElementsByClassName('entry-content')[0].innerHTML;
-            div.style.display = 'inline-block';
-            clearButton.style.display='inline-block';
+            div.innerHTML+=doc.getElementsByClassName('entry-content')[0].innerHTML; // the getElementsByClassName returns HTML collection and as there is only one div with class entry-content we get it via the zero index
+            div.style.display = 'inline-block'; // by default the div container has display set to none to hide it
+            clearButton.style.display='inline-block'; // here we display the button to clear the review text
 
         })
            .catch(error => console.log('Could not get URL', error));
     }
-}
-
-function clearText() {
-    let div = document.getElementById('movies-reviewed-text');
-    let clearButton = document.querySelector('.movies-reviewed-text-clear-btn');
-
-    div.textContent = '';
-    div.style.display = 'none';
-    clearButton.style.display = 'none';
 }
 
 function slideshow() {
@@ -59,15 +74,14 @@ function slideshow() {
     carousel();
 
     function carousel() {
-        let i;
-        let x = document.getElementsByClassName("image-gallery-content-img");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+        let images = document.getElementsByClassName("image-gallery-content-img"); // we get all of the images with class image-gallery-content-img
+        for (let i = 0; i < images.length; i++) {
+            images[i].style.display = "none";
         }
         myIndex++;
-        if (myIndex > x.length) {myIndex = 1}
-        x[myIndex-1].style.display = "flex";
-        setTimeout(carousel, 5000); // Change image every 2 seconds
+        if (myIndex > images.length) {myIndex = 1}
+        images[myIndex-1].style.display = "flex";
+        setTimeout(carousel, 5000); // We use recursion to set the display to flex for the next image after waiting 5 seconds
     }
 }
 
@@ -88,13 +102,20 @@ function searchBoxOffice(){
     function boxOfficeInfo(event){
 
         table.innerHTML='';
+        table.style.display='block';
+        let clearButton = event.target.parentElement.querySelector('[id$="clear"]');
+        clearButton.style.display='block';
 
         let input = event.target.parentElement.querySelector('input[type="text"]').value;
 
+
+
+        // as the input may contain commas we need to remove them to convert the input to number
         if(input.includes(',')){
             input=input.replace(/,/g, '');
         }
 
+        // the input must be a number and we can not allow to be text
         let regex = /[a-zA-Z]/;
 
         if (regex.test(input)){
@@ -104,6 +125,7 @@ function searchBoxOffice(){
 
         let searchNumber = Number(input);
 
+        // the result will be JSON and this is why we are using JSON.parse
         fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02')
             .then(response => response.text())
             .then(function (jsonData) {
@@ -144,6 +166,9 @@ function searchMovie(){
     function search(event){
 
         table.innerHTML='';
+        table.style.display='block';
+        let clearButton = event.target.parentElement.querySelector('[id$="clear"]');
+        clearButton.style.display='block';
 
         let input = event.target.parentElement.querySelector('input[type="text"]').value;
 
@@ -159,7 +184,10 @@ function searchMovie(){
 
                     if (movie.toLowerCase() === input.toLowerCase()){
 
-                        tr += "<td>" + object.rank + "</td>" + "<td>" + object.title + "</td>" + "<td>" + object.worldwideLifetimeGross + "<td>" + object.year + "</td>" + "</td></tr>";
+                        tr += "<td>" + object.rank + "</td>" +
+                            "<td>" + object.title + "</td>" +
+                            "<td>" + object.worldwideLifetimeGross +
+                            "<td>" + object.year + "</td>" + "</td></tr>";
 
 
                     }
@@ -190,6 +218,9 @@ function searchYear(){
     function search(event){
 
         table.innerHTML='';
+        table.style.display='block';
+        let clearButton = event.target.parentElement.querySelector('[id$="clear"]');
+        clearButton.style.display='block';
 
         let input = event.target.parentElement.querySelector('input[type="text"]').value;
 
@@ -214,7 +245,9 @@ function searchYear(){
 
                     if (year === searchYear){
 
-                        tr += "<td>" + object.rank + "</td>" + "<td>" + object.title + "</td>" + "<td>" + object.year + "</td></tr>";
+                        tr += "<td>" + object.rank + "</td>" +
+                            "<td>" + object.title + "</td>" +
+                            "<td>" + object.year + "</td></tr>";
 
                     }
                 }
@@ -227,33 +260,15 @@ function searchYear(){
 
 }
 
-function clearField() {
-    let clearButtons = document.querySelectorAll('[id$="clear"]');
-
-    for (let button of clearButtons) {
-        button.addEventListener('click', clear);
-    }
-
-    function clear(event){
-        let parentElement = event.target.parentElement.querySelector('[id$="output"]');
-
-        if (event.target.id === 'comment-section-clear') {
-            document.getElementById('comment-section-show-button').style.display = 'block';
-            event.target.style.display='none';
-        }
-
-        parentElement.innerHTML='';
-    }
-}
-   function scrollFunction() {
+function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             topButton.style.display = "block";
         } else {
             topButton.style.display = "none";
         }
-    }
+}
 
-    function topFunction() {
+function topFunction() {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
@@ -262,6 +277,7 @@ function showComments() {
     let output = document.getElementById('comment-section-output');
     let showButton = document.getElementById('comment-section-show-button');
     let clearButton = document.getElementById('comment-section-clear');
+
     showButton.addEventListener('click',listComments);
 
     function listComments(){
@@ -269,7 +285,8 @@ function showComments() {
             method: 'POST'
         })
             .then(response => response.text())
-            .then(data => output.innerHTML += data);
+            .then(data => output.innerHTML += data)
+            .catch(error => console.log('Could not get URL', error));
 
         output.style.display='block';
         showButton.style.display='none';
@@ -281,8 +298,8 @@ function showComments() {
 function addComments(){
     let name = document.getElementById('comment-section-name');
     let comment = document.getElementById('comment-section-textarea');
-    
-     if (name.value === '') {
+
+    if (name.value === '') {
         name.placeholder = 'Моля въведете си името!'
         return;
     } else if (comment.value === '') {
@@ -290,19 +307,22 @@ function addComments(){
         return;
     }
 
-    let url = 'addComment.php';
+    // as we need to send the values from the name and the comment input fields to the name and content variables in the addComment.php file we use form data to wrap them
     let formData = new FormData();
-     formData.append('name', name.value);
-     formData.append('content', comment.value);
+    formData.append('name', name.value);
+    formData.append('content', comment.value);
 
 
-    fetch(url, { method: 'POST', body: formData })
+    fetch('addComment.php', {
+        method: 'POST', body: formData
+    })
         .then(function (response) {
             return response.text();
         })
         .then(function (body) {
-            console.log(body);
-        });
+            console.log('Successfully Added Comment!');
+        })
+        .catch(error => console.log('Could not get URL', error));
 
     name.value='';
     comment.value='';
