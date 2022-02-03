@@ -130,9 +130,10 @@ function searchBoxOffice(){
             .then(response => response.text())
             .then(function (jsonData) {
                 let jsonObjects = JSON.parse(jsonData).items;
+                let tr = "<tr>";
 
                 for (let object of jsonObjects) {
-                    let tr = "<tr>";
+
                     let boxOfficeInput = object.worldwideLifetimeGross.substring(1);
                     let boxOffice = Number(boxOfficeInput.replace(/,/g, ''));
 
@@ -140,8 +141,14 @@ function searchBoxOffice(){
 
                         tr += "<td>" + object.rank + "</td>" + "<td>" + object.title + "</td>" + "<td>" + object.worldwideLifetimeGross + "</td></tr>";
 
-                        table.innerHTML += tr;
+
                     }
+                }
+
+                if (tr === '<tr>'){
+                    table.innerHTML = 'Не е намерен филм!';
+                } else {
+                    table.innerHTML += tr;
                 }
 
             })
@@ -193,7 +200,11 @@ function searchMovie(){
                     }
                 }
 
-                table.innerHTML += tr;
+                if (tr === '<tr>'){
+                    table.innerHTML = 'Не е намерен филм!';
+                } else {
+                    table.innerHTML += tr;
+                }
 
             })
             .catch(error => console.log('Could not get URL', error));
@@ -252,7 +263,11 @@ function searchYear(){
                     }
                 }
 
-                table.innerHTML += tr;
+                if (tr === '<tr>'){
+                    table.innerHTML = 'Не е намерен филм!';
+                } else {
+                    table.innerHTML += tr;
+                }
 
             })
             .catch(error => console.log('Could not get URL', error));
@@ -285,7 +300,13 @@ function showComments() {
             method: 'POST'
         })
             .then(response => response.text())
-            .then(data => output.innerHTML += data)
+            .then(data => {
+                if (!data.includes('div')) {
+                    output.innerHTML += '<p class="comment-section-comment-none-found">Няма намерени коментари!<p>';
+                } else {
+                    output.innerHTML += data;
+                }
+            })
             .catch(error => console.log('Could not get URL', error));
 
         output.style.display='block';
