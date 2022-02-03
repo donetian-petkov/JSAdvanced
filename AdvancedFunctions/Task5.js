@@ -15,4 +15,4 @@ function add(num) {
     return inner(num);
 }
 
-add(1)(6)(-3);
+console.log(add(1)(6)(-3).toString());
