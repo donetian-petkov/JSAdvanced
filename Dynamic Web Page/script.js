@@ -307,8 +307,10 @@ function addComments(){
         return;
     }
 
-    // as we need to send the values from the name and the comment input fields to the name and content variables in the addComment.php file we use form data to wrap them
-    let formData = new FormData();
+    // as we need to send the values from the name and the comment input fields to the name
+    // and content variables in the addComment.php file we use form data to wrap them
+    // you may comment the jquery and use the below fetch to verify that it works as expected - I just wanted to try both methods
+    /* let formData = new FormData();
     formData.append('name', name.value);
     formData.append('content', comment.value);
 
@@ -322,7 +324,18 @@ function addComments(){
         .then(function (body) {
             console.log('Successfully Added Comment!');
         })
-        .catch(error => console.log('Could not get URL', error));
+        .catch(error => console.log('Could not get URL', error));*/
+
+    $.ajax({
+        type: "POST",
+        url: "addComment.php",
+        data:{ name: name.value ,
+        content: comment.value},
+        success: function(data){
+            console.log(data);
+        }
+    })
+
 
     name.value='';
     comment.value='';
