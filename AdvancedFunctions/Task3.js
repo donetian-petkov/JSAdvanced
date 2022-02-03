@@ -2,6 +2,7 @@ function getFibonator() {
 
     let [a, b] = [0, 1];
 
+    //closure - the a + b are returned with the values set in the inner function during the next execution of the function
     return () => {
         let c = a + b;
         a = b;
