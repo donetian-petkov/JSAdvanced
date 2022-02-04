@@ -39,35 +39,6 @@ function buttonToggle() {
 
 }
 
-function dropdownToggle() {
-
-    document.getElementById('movies-reviewed-dropdown').addEventListener('change',  searchMovie); // we set an eventListener to the dropdown menu, which upon click should execute the searchMovie function
-    let div = document.getElementById('movies-reviewed-text-output'); // we get the div where we will post the review
-    let clearButton = document.querySelector('#movies-reviewed-text-clear'); // we get the clear button which by default has its display set to none
-
-
-    function searchMovie(event){
-
-        div.textContent = ''; // we reset the content in the div where the reviews are posted
-
-        let URI = event.target.value; // we get the URI from the value of the dropdown options as they resemble the URI's of the reviews' pages
-
-        // we work with DOMParser here as the fetched data is HTML
-       fetch('https://www.donetianpetkov.com/' + URI)
-           .then(response => response.text())
-           .then( (html) => {
-            let parser = new DOMParser();
-            let doc = parser.parseFromString(html, 'text/html'); // we parse the received text (html) to HTML to easily manage it
-
-            div.innerHTML+=doc.getElementsByClassName('entry-content')[0].innerHTML; // the getElementsByClassName returns HTML collection and as there is only one div with class entry-content we get it via the zero index
-            div.style.display = 'inline-block'; // by default the div container has display set to none to hide it
-            clearButton.style.display='inline-block'; // here we display the button to clear the review text
-
-        })
-           .catch(error => console.log('Could not get URL', error));
-    }
-}
-
 function slideshow() {
 
     let myIndex = 0;
@@ -273,6 +244,36 @@ function searchYear(){
             .catch(error => console.log('Could not get URL', error));
     }
 
+}
+
+function searchReview() {
+
+    document.getElementById('movies-reviewed-dropdown').addEventListener('change',  searchMovie); // we set an eventListener to the dropdown menu, which upon click should execute the searchMovie function
+    let div = document.getElementById('movies-reviewed-text-output'); // we get the div where we will post the review
+    let clearButton = document.querySelector('#movies-reviewed-text-clear'); // we get the clear button which by default has its display set to none
+
+
+    function searchMovie(event){
+
+        div.textContent = ''; // we reset the content in the div where the reviews are posted
+
+        let URI = event.target.value; // we get the URI from the value of the dropdown options as they resemble the URI's of the reviews' pages
+
+        // we work with DOMParser here as the fetched data is HTML
+        fetch('https://www.donetianpetkov.com/' + URI)
+            .then(response => response.text())
+            .then( (html) => {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(html, 'text/html'); // we parse the received text (html) to HTML to easily manage it
+
+                let review = doc.getElementsByClassName('entry-content')[0].innerHTML;
+                div.insertAdjacentHTML('beforeend', review);
+                div.style.display = 'inline-block'; // by default the div container has display set to none to hide it
+                clearButton.style.display='inline-block'; // here we display the button to clear the review text
+
+            })
+            .catch(error => console.log('Could not get URL', error));
+    }
 }
 
 function scrollFunction() {
