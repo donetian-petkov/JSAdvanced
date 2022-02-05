@@ -6,6 +6,7 @@
 04. DOM
 05. DOM Manipulation (Create and Append HTML Elements, add Event Listeners, etc)
 06. Advanced Functions
+07. Classes
 
 The HTML + CSS are provided by SoftUni, the JS scripts, however, I made by me. The only exception is the Dynamic Web Page, which is entirely created by me. 
 There is a document in each folder, containing the tasks. 
