@@ -1,3 +1,5 @@
+const expect = require("chai").expect;
+
 class Rectangle {
     constructor (width, height, color) {
         this.width = width;
@@ -19,4 +21,8 @@ console.log(rect.height);
 
 console.log(rect.color);
 
-console.log(rect.calcArea());
+describe("calcArea", function() {
+    it("Should return 20 if the width and height are multiplied", function() {
+        expect(rect.calcArea()).to.be.equal(20);
+        });
+});
