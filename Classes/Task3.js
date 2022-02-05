@@ -1,14 +1,14 @@
-class Ticket {
-    constructor(destination , price, status) {
-
-        this.destination = destination;
-        this.price = price;
-        this.status = status;
-
-    }
-}
-
 function result (ticketArray, sortCriteria) {
+
+    class Ticket {
+        constructor(destination , price, status) {
+
+            this.destination = destination;
+            this.price = Number(price);
+            this.status = status;
+
+        }
+    }
 
     let tickets = [];
 
@@ -27,10 +27,11 @@ function result (ticketArray, sortCriteria) {
               tickets.sort((a,b) => a.destination.localeCompare(b.destination));
               break;
           case "price":
-              tickets.sort((a,b) => b.price - a.price);
+              tickets.sort((a,b) => a.price - b.price);
               break;
           case "status":
-              tickets.sort((a,b) => b.status.localeCompare(a.status));
+              tickets.sort((a,b) => a.status.localeCompare(b.status));
+              break;
       }
 
       return tickets;
@@ -39,8 +40,14 @@ function result (ticketArray, sortCriteria) {
 let resultArray = result(['Philadelphia|94.20|available',
         'New York City|95.99|available',
         'New York City|95.99|sold',
-        'Boston|126.20|departed'],
-    'destination');
+        'Boston|126.20|available',
+        'Philadelphia|132.20|departed',
+        'Chicago|140.20|available',
+        'Dallas|144.60|sold',
+        'New York City|206.20|sold',
+        'New York City|240.20|departed',
+        'New York City|305.20|departed'],
+    'price');
 
 console.log(resultArray);
 
