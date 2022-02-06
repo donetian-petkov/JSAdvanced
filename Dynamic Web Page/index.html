@@ -53,6 +53,24 @@
         </blockquote>
     </div>
 </section>
+
+<section class="movies-reviewed">
+    <label for="movies-reviewed-dropdown"><h2 class="movies-reviewed-dropdown">Tърси в моите рецензии:</h2></label>
+    <select class="movies-reviewed-dropdown" id="movies-reviewed-dropdown">
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-zero" value="0">Избери Филм:</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-rogue-one" value="star-wars-rogue-one">Star Wars: Rogue One</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-stranger-things" value="stranger-things">Stranger Things</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-spider-man" value="spider-man-into-the-spider-verse">Spider-Man: Into the Spider-Verse</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-the-nice-guys" value="the-nice-guys">The Nice Guys</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-captain-america-civil-war" value="captain-america-civil-war">Captain America: Civil War</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-la-la-land" value="la-la-land">La La Land</option>
+        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-blade-runner-2049" value="blade-runner-2049">Blade Runner 2049</option>
+    </select>
+    <div id="movies-reviewed-text-output">
+    </div>
+    <button id="movies-reviewed-text-clear">Изчисти Текста</button>
+</section>
+
 <section class="get-movie-by-box-office">
     <div class="get-movie-by-box-office-content">
         <label for="get-movie-by-box-office-boxoffice-input">Задай бокс офис печалба и ще ти покажа всички филми сред Топ 200, които имат по-голяма печалба:  </label>
@@ -84,21 +102,11 @@
         </table>
     </div>
 </section>
-<section class="movies-reviewed">
-    <label for="movies-reviewed-dropdown"><h2 class="movies-reviewed-dropdown">Tърси в моите рецензии:</h2></label>
-    <select class="movies-reviewed-dropdown" id="movies-reviewed-dropdown">
-        <option class="movies-reviewed-dropdown" id="movies-reviewed-zero" value="0">Избери Филм:</option>
-    <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-rogue-one" value="star-wars-rogue-one">Star Wars: Rogue One</option>
-    <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-stranger-things" value="stranger-things">Stranger Things</option>
-    <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-spider-man" value="spider-man-into-the-spider-verse">Spider-Man: Into the Spider-Verse</option>
-        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-the-nice-guys" value="the-nice-guys">The Nice Guys</option>
-        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-captain-america-civil-war" value="captain-america-civil-war">Captain America: Civil War</option>
-        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-la-la-land" value="la-la-land">La La Land</option>
-        <option class="movies-reviewed-dropdown" id="movies-reviewed-dropdown-blade-runner-2049" value="blade-runner-2049">Blade Runner 2049</option>
-    </select>
-    <div id="movies-reviewed-text-output">
+
+<section class="news-widget">
+    <div id="news-widget-output">
+        <h2>Филмовите новини и рецензии от Little White Lies</h2>
     </div>
-        <button id="movies-reviewed-text-clear">Изчисти Текста</button>
 </section>
 
 <section class="comment-section">
@@ -133,4 +141,5 @@
 <script>window.onload=searchYear()</script>
 <script>window.onload=clearField()</script>
 <script>window.onload = showComments();</script>
+<script>window.onload=getNewsFeed()</script>
 </html>

@@ -364,3 +364,37 @@ function addComments(){
     name.placeholder='Твоето Име';
     comment.placeholder='....';
 }
+
+function getNewsFeed() {
+
+    let outputField = document.getElementById('news-widget-output');
+
+    fetch('https://www.donetianpetkov.com/website/feedURL.php')
+        .then(response => response.text())
+        .then( (xml) => {
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(xml, 'text/xml');
+
+            let xmlItems = [doc.getElementsByTagName('item')[0], doc.getElementsByTagName('item')[1],
+                doc.getElementsByTagName('item')[2], doc.getElementsByTagName('item')[4],
+                doc.getElementsByTagName('item')[5]];
+
+            for (let item of xmlItems) {
+
+                let input = '<div class="news-widget-items">';
+
+                let title = item.querySelector('title').textContent.split('\n')[0];
+                let link = item.querySelector('link').textContent.split('\n')[0];
+                let description = item.querySelector('description').textContent.split('\n')[0];
+                let image = item.querySelector('thumbnail').getAttribute('url');
+
+                input+='<img src="' + image + '"</img><a href="' + link + '" target=_blank><h4>' +
+                    title + '</h4>' + description + '</a></dvi>';
+
+                outputField.innerHTML+=input;
+            }
+
+        })
+        .catch(error => console.log('Could not get URL', error));
+
+}
