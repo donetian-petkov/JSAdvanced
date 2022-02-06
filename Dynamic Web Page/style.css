@@ -395,11 +395,14 @@ footer ul li {
     display: flex;
     align-items: center;
     margin:auto;
+    margin-bottom: 10px;
     width: 50%;
+    border:solid white 1px;
+    border-radius: 15px;
 }
 
 .news-widget-items img{
-    margin: 20px 20px 0 0;
+    margin: 20px 0 20px 10px;
     width: 200px;
     object-fit: contain;
     align-self: flex-start;
