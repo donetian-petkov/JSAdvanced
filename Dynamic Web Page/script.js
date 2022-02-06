@@ -369,7 +369,7 @@ function getNewsFeed() {
 
     let outputField = document.getElementById('news-widget-output');
 
-    fetch('https://www.donetianpetkov.com/website/feedURL.php')
+    fetch('feedURL.php')
         .then(response => response.text())
         .then( (xml) => {
             let parser = new DOMParser();
