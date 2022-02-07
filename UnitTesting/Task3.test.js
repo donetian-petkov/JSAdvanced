@@ -23,16 +23,20 @@ describe ('lookupChar function tests', () => {
         assert(lookupChar('Test', -1) === 'Incorrect index');
     });
 
+    it('return incorrect index if input string is empty', () => {
+        assert(lookupChar('', 0) === 'Incorrect index');
+    });
+
     it('return undefined if first parameter is not string', () => {
         assert(lookupChar(100, 10) === undefined);
     });
 
-    it('return undefined with first parameter string and second parameter decimal', () => {
+    it('return undefined if first parameter is string and the second parameter is decimal', () => {
         assert(lookupChar('Test', 10.5) === undefined);
     });
 
-    it('return undefined with wrong types parameter', () => {
-        assert(lookupChar(100, '10.5') === undefined);
+    it('return undefined if the wrong types parameter are provided', () => {
+        assert(lookupChar(100, '105') === undefined);
     });
 
 });
