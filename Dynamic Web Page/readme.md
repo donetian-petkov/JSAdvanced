@@ -7,3 +7,7 @@ CREATE TABLE IF NOT EXISTS \`comments\` (
 	\`submit_date\` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (\`id\`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+You may see the finished project at: 
+
+https://www.donetianpetkov.com/webpage/

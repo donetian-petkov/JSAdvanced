@@ -51,7 +51,7 @@ function slideshow() {
         }
         myIndex++;
         if (myIndex > images.length) {myIndex = 1}
-        images[myIndex-1].style.display = "flex";
+        images[myIndex-1].style.display = "inline-block";
         setTimeout(carousel, 5000); // We use recursion to set the display to flex for the next image after waiting 5 seconds
     }
 }
