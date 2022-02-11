@@ -98,9 +98,9 @@ function searchBoxOffice(){
 
         // the result will be JSON and this is why we are using JSON.parse
         fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02')
-            .then(response => response.text())
+            .then(response => response.json())
             .then(function (jsonData) {
-                let jsonObjects = JSON.parse(jsonData).items;
+                let jsonObjects = jsonData.items;
                 let tr = "<tr>";
 
                 for (let object of jsonObjects) {
@@ -151,9 +151,9 @@ function searchMovie(){
         let input = event.target.parentElement.querySelector('input[type="text"]').value;
 
         fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02')
-            .then(response => response.text())
+            .then(response => response.json())
             .then(function (jsonData) {
-                let jsonObjects = JSON.parse(jsonData).items;
+                let jsonObjects = jsonData.items;
                 let tr = "<tr>";
 
                 for (let object of jsonObjects) {
@@ -216,9 +216,9 @@ function searchYear(){
         let searchYear = Number(input);
 
         fetch('https://imdb-api.com/en/API/BoxOfficeAllTime/k_72recc02')
-            .then(response => response.text())
+            .then(response => response.json())
             .then(function (jsonData) {
-                let jsonObjects = JSON.parse(jsonData).items;
+                let jsonObjects = jsonData.items;
                 let tr = "<tr>";
 
                 for (let object of jsonObjects) {
