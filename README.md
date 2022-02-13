@@ -9,6 +9,8 @@
 07. Classes
 08. Unit Testing
 09. Exam from October 2021
+10. AsynchronousProgramming
+11. CRUDAndAuthorisation
 
 The HTML + CSS are provided by SoftUni, the JS scripts, however, I made by me. The only exception is the Dynamic Web Page, which is entirely created by me. 
 There is a document in each folder, containing the tasks. 
