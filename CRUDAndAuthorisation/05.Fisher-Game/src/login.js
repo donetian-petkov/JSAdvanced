@@ -1,6 +1,13 @@
 window.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
     form.addEventListener('submit', onLogin);
+
+    const loginButton = document.getElementById('login');
+    loginButton.style.display = 'none';
+
+    const logoutButton = document.getElementById('logout');
+    logoutButton.style.display='none';
+
 });
 
 async function onLogin(event){
