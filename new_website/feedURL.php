@@ -2,7 +2,7 @@
 // Set the feed URL.
 //$feed_url = "https://www.denofgeek.com/feed/";
 
-$feed_url = "https://www.gamespot.com/api/reviews/?api_key=9120f24aef34abfcba8177ecc401255f88906501&format=json&sort=publish_date:desc";
+//$feed_url = "https://www.gamespot.com/api/reviews/?api_key=9120f24aef34abfcba8177ecc401255f88906501&format=json&sort=publish_date:desc";
 
 $options = array(
   'http'=>array(
@@ -13,10 +13,12 @@ $options = array(
 
 $context = stream_context_create($options);
 
+$feedURL = $_POST["url"];
+
 // Fetch the content.
 // See http://php.net/manual/en/function.file-get-contents.php for more
 // information about the file_get_contents() function.
-$content = file_get_contents( $feed_url , false, $context);
+$content = file_get_contents( $feedURL , false, $context);
 
 // Set the Content-Type header.
 header( 'Content-Type: application/json' );
