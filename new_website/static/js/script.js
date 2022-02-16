@@ -178,7 +178,7 @@ function createGameHTML(game) {
     a.appendChild(title);
 
     let timePlayed = document.createElement('p');
-    timePlayed.textContent = `Time Played: ${hoursPlayed}`;
+    timePlayed.textContent = `Time Played: ${hoursPlayed} hours`;
     a.appendChild(timePlayed);
 
     gamesPlayedArticle.appendChild(a);
