@@ -160,6 +160,7 @@ async function fetchGame(){
 
 function createGameHTML(game) {
 
+    let hoursPlayed = (Number(game.playtime_forever)/60).toFixed(0);
 
     let a = document.createElement('a');
     a.href=`https://store.steampowered.com/app/${game.appid}`;
@@ -177,7 +178,7 @@ function createGameHTML(game) {
     a.appendChild(title);
 
     let timePlayed = document.createElement('p');
-    timePlayed.textContent = `Time Played: ${game.playtime_forever}`;
+    timePlayed.textContent = `Time Played: ${hoursPlayed}`;
     a.appendChild(timePlayed);
 
     gamesPlayedArticle.appendChild(a);
