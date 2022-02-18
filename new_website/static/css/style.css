@@ -152,6 +152,7 @@ header {
 
 .games-played-games img{
     margin:10px;
+    box-shadow: 0px 10px 20px -11px black;
 }
 
 
