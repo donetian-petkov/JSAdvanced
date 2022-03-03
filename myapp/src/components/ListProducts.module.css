@@ -1,0 +1,17 @@
+.listProducts th,td {
+    border: 1px solid;
+    width: 100px;
+    text-align: center;
+    background: skyblue;
+}
+
+.buttons button{
+    background: white;
+    margin: 10px 0;
+    width: 75px;
+    border-radius:16px;
+}
+
+.inputFields {
+    text-align: center;
+}
