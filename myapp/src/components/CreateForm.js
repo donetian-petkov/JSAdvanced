@@ -1,10 +1,9 @@
 import styles from './CreateForm.module.css';
 import fetchPermissions from '../services/fetchPermissions'
-import {useState , useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
+import {ProductContext} from "../App";
 
-export default function CreateForm({
-                                       listProductsHandler
-                                   }) {
+export default function CreateForm() {
 
     let [canRead, setCanRead] = useState(true);
 
@@ -15,6 +14,11 @@ export default function CreateForm({
             })
     }, []);
 
+    let value = useContext(ProductContext);
+
+    let {value1 , value2 } = value;
+
+    let listProductsHandler = value2;
 
 
 

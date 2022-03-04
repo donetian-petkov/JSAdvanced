@@ -1,15 +1,18 @@
 import styles from './ListProducts.module.css'
 import UpdateButton from "./UpdateButton";
 import DeleteButton from "./DeleteButton";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import fetchPermissions from "../services/fetchPermissions";
+import CreateRow from "./CreateRow";
+import {ProductContext} from "../App";
 
-export default function ListProducts({
-    products, deleteHandler, editHandler
-                                     }) {
+export default function ListProducts() {
 
+    let value = useContext(ProductContext);
+    let {value1 , value2, value3} = value;
+    let [products, setProducts] = value1;
+    let [currentId, setCurrentId] = value3;
     let [canRead, setCanRead] = useState(true);
-    let [id , setId] = useState('');
 
     useEffect(() => {
         fetchPermissions()
@@ -18,9 +21,6 @@ export default function ListProducts({
             })
     }, []);
 
-    function setCurrentProduct(id) {
-        setId(id);
-    }
 
 
     return (
@@ -38,18 +38,16 @@ export default function ListProducts({
             {products.map((val) => {
                 return (
                     <tr key={val.objectId} id={val.objectId}>
-                        <td>
-                            <input type="text" name="name" className={styles.inputFields} defaultValue={val.name} readOnly={val.objectId !== id}></input>
-                        </td>
-                        <td>
-                            <input type="number" name="price" step=".01" className={styles.inputFields} defaultValue={val.price} readOnly={val.objectId !== id}></input>
-                        </td>
-                        <td>
-                            <input type="text" name="currency" className={styles.inputFields} defaultValue={val.currency} readOnly={val.objectId !== id}></input>
-                        </td>
+
+                        <CreateRow type="text" name="name" id={currentId} product={val} className={styles.inputFields} defaultValue={val.name}/>
+
+                        <CreateRow type="number" name="price" id={currentId}  product={val} className={styles.inputFields} defaultValue={val.price}/>
+
+                        <CreateRow type="text" name="currency" id={currentId}  product={val} className={styles.inputFields} defaultValue={val.currency}/>
+
                         <td className={styles.buttons}>
-                            <UpdateButton setCurrentProduct={setCurrentProduct} editHandler={editHandler} id={id}/>
-                            <DeleteButton deleteHandler={deleteHandler}/>
+                            <UpdateButton/>
+                            <DeleteButton/>
                         </td>
                     </tr>
                 )

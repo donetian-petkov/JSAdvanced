@@ -1,11 +1,14 @@
 import './App.css';
 import CreateForm from "./components/CreateForm.js";
 import ListProducts from "./components/ListProducts";
-import {useEffect , useState} from "react";
+import React, {useEffect , useState} from "react";
+export const ProductContext = React.createContext();
+
 
 function App() {
 
     let [products, setProducts] = useState([]);
+    let [currentId, setCurrentId] = useState('');
 
     function listProductsHandler() {
         fetch("https://parseapi.back4app.com/classes/Product", {
@@ -24,38 +27,14 @@ function App() {
         listProductsHandler()
     },[]);
 
-    function deleteHandler(id){
-
-        const newProducts = products.filter(x => x.objectId !== id)
-        setProducts(newProducts);
-
-    }
-
-    function editHandler(id, name, price, currency) {
-
-        const index = products.findIndex(x => x.objectId === id);
-
-        const startProducts = products.slice(0,index);
-
-        const endProducts = products.slice(index+1);
-
-        const editedProduct = products.find(x => x.objectId === id);
-
-        editedProduct.name = name;
-        editedProduct.price = price;
-        editedProduct.currency = currency;
-
-        const newProducts = [...startProducts, editedProduct, ...endProducts];
-
-        setProducts(newProducts);
-
-    }
 
     return (
         <div className="App">
 
+            <ProductContext.Provider value={{value1:[products , setProducts],value2:listProductsHandler, value3:[currentId, setCurrentId]}}>
             <CreateForm listProductsHandler={listProductsHandler}/>
-            <ListProducts products={products} deleteHandler={deleteHandler} editHandler={editHandler}/>
+            <ListProducts/>
+            </ProductContext.Provider>
 
         </div>
     );

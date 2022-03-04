@@ -1,12 +1,13 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import fetchPermissions from "../services/fetchPermissions";
+import {ProductContext} from "../App";
 
-export default function DeleteButton({
-                                         deleteHandler
-                                     }) {
+export default function DeleteButton() {
 
 
     let [canDelete, setCanDelete] = useState(true);
+    let {value1} = useContext(ProductContext);
+    let [products , setProducts] = value1;
 
     useEffect(() => {
         fetchPermissions()
@@ -14,6 +15,14 @@ export default function DeleteButton({
                 setCanDelete(result.some(x => x === "DELETE"));
             })
     }, []);
+
+
+    function deleteHandler(id){
+
+        const newProducts = products.filter(x => x.objectId !== id)
+        setProducts(newProducts);
+
+    }
 
     function deleteProduct(e) {
         const row = e.currentTarget.parentElement.parentElement;
@@ -32,7 +41,7 @@ export default function DeleteButton({
             .then(response => response.json())
             .then(() => {
                 deleteHandler(id);
-                alert("Successfully Deleted Product " + name);
+                console.log("Successfully Deleted Product " + name);
             })
 
     }
