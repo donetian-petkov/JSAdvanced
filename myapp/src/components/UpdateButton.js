@@ -64,6 +64,11 @@ export default function UpdateButton() {
             const price = Number(row.children[1].children[0].value);
             const currency = row.children[2].children[0].value;
 
+            if(products.some(x => x.name === name) && products.find(x => x.name === name).objectId !== currentId) {
+                error(`A product with ${name} already exists`);
+                return;
+            }
+
             if (name && price && currency) {
 
                 fetchEditProduct(currentId, name, price, currency)
