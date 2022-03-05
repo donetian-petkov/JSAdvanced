@@ -1,5 +1,3 @@
-import toast from "react-hot-toast";
-
 export default function fetchCreateProduct(name, price, currency) {
 
     return fetch('https://parseapi.back4app.com/classes/Product', {

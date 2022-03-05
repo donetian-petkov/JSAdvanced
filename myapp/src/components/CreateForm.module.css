@@ -21,9 +21,9 @@
 
 .submitButton {
     align-self: center;
-    background: rgb(58	108	203);
-    color:white;
-    border: 1px solid rgb(58 108 203);
+    background: rgb(152	191	242	);
+    color:black;
+    border: 1px solid rgb(152 191 242);
     border-radius: 16px;
     width: 125px;
     height: 30px;
@@ -35,6 +35,9 @@
     box-shadow: 5px 3px 4px 0px #000000;
     cursor:pointer;
     width:130px;
+    color:white;
+    border: 1px solid rgb(58  108  203);
+    background: rgb(58  108  203);
 }
 
 .submitButton:active{

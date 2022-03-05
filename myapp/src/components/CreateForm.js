@@ -1,76 +1,97 @@
 import styles from './CreateForm.module.css';
 import fetchPermissions from '../services/fetchPermissions'
+import fetchCreateProduct from "../services/fetchCreateProduct";
 import {useState, useEffect, useContext} from "react";
 import {ProductContext} from "../App";
+import toast from 'react-hot-toast';
+import React from 'react';
 
 export default function CreateForm() {
 
-    let [canRead, setCanRead] = useState(true);
+    const [canRead, setCanRead] = useState(true);
+    const value = useContext(ProductContext);
+    const {value1, value2} = value;
+    const [products] = value1;
+    const listProductsHandler = value2;
 
     useEffect(() => {
         fetchPermissions()
             .then(result => {
                 setCanRead(result.some(x => x === "CREATE"));
-            });
+            })
     }, []);
 
-    let value = useContext(ProductContext);
+    const success = (message) => toast.success(message, {
+        duration: 3000,
+        position: 'top-right',
+        style: {
+            background: "rgb(198 221 244)"
+        }
+    });
 
-    let {value1 , value2 } = value;
+    const error = (message) => toast.error(message, {
+        duration: 3000,
+        position: 'top-right',
+        style: {
+            background: "rgb(198 221 244)"
+        }
+    });
 
-    let listProductsHandler = value2;
-
-    async function createProduct(e) {
+    function createProduct(e) {
         e.preventDefault();
+
         const formData = new FormData(e.currentTarget);
 
         let {name, price, currency} = Object.fromEntries(formData);
 
         if (name && price && currency) {
 
+            if (products.some(x => x.name === name)) {
+                error(`Product ${name} already exists`);
+                return;
+            }
+
             price = Number(price);
 
-            let response = await fetch('https://parseapi.back4app.com/classes/Product', {
-                method: "POST",
-                headers: {
-                    "X-Parse-Application-Id": "NTQV9iE7S45PGxM3hL3Zf5s3G9TDrFpc6hYV8CeV",
-                    "X-Parse-REST-API-Key": "wiCJvsTuvvTlIBpEOpc4Yqp5QQd5U5XXBFNA6GIv",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({name, price, currency})
-            });
-            let result = await response.text();
-
-            listProductsHandler();
-
-            console.log(result);
+            fetchCreateProduct(name, price, currency)
+                .then(res => res.text())
+                .then(() => {
+                    success(`Successfully created product ${name}`);
+                    listProductsHandler();
+                })
+                .catch(() => {
+                    error("Could not connect to API");
+                });
 
         } else {
+            error('You must fill all of the input fields');
             return;
         }
+
+        e.currentTarget.reset();
 
     }
 
     return (
 
         canRead ?
-        <form id="createForm" onSubmit={createProduct}>
+            <form id="createForm" onSubmit={createProduct}>
 
-            <div className={styles.createDetails}>
+                <div className={styles.createDetails}>
 
-                <label htmlFor="name">Name: </label>
-                <input type="text" name="name" id="name" placeholder="The Product's Name"/>
+                    <label htmlFor="name" style={{fontWeight: "bold"}}>Name: </label>
+                    <input type="text" name="name" id="name" placeholder="The Product's Name"/>
 
-                <label htmlFor="price">Price: </label>
-                <input type="number" name="price" id="price" step=".01" placeholder="The Product's Price"/>
+                    <label htmlFor="price" style={{fontWeight: "bold"}}>Price: </label>
+                    <input type="number" name="price" id="price" step=".01" placeholder="The Product's Price"/>
 
-                <label htmlFor="currency">Currency: </label>
-                <input type="text" name="currency" id="currency" placeholder="The Product's Currency"/>
+                    <label htmlFor="currency" style={{fontWeight: "bold"}}>Currency: </label>
+                    <input type="text" name="currency" id="currency" placeholder="The Product's Currency"/>
 
-                <input className={styles.submitButton} id="submitButton" type="submit" value="Create Product"/>
+                    <input className={styles.submitButton} id="submitButton" type="submit" value="Create Product"/>
 
-            </div>
-        </form>
+                </div>
+            </form>
             : null
     );
 

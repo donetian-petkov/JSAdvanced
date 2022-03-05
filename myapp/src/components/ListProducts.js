@@ -5,14 +5,14 @@ import {useState, useEffect, useContext} from "react";
 import fetchPermissions from "../services/fetchPermissions";
 import CreateRow from "./CreateRow";
 import {ProductContext} from "../App";
+import React from 'react';
 
 export default function ListProducts() {
 
-    let value = useContext(ProductContext);
-    let {value1 , value2, value3} = value;
-    let [products, setProducts] = value1;
-    let [currentId, setCurrentId] = value3;
-    let [canRead, setCanRead] = useState(true);
+    const value = useContext(ProductContext);
+    const [products] = value["value1"];
+    const [currentId] = value["value3"];
+    const [canRead, setCanRead] = useState(true);
 
     useEffect(() => {
         fetchPermissions()
@@ -20,9 +20,6 @@ export default function ListProducts() {
                 setCanRead(result.some(x => x === "READ"));
             })
     }, []);
-
-
-
 
     return (
         canRead ?

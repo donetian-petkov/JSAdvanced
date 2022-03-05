@@ -1,4 +1,4 @@
-import styles from "./ListProducts.module.css";
+import React from 'react';
 
 export default function CreateRow({
                                       type, name, id, product, className, defaultValue
@@ -14,5 +14,4 @@ export default function CreateRow({
                    readOnly={product.objectId !== id}></input>
         </td>
     )
-
 }
