@@ -8,11 +8,11 @@ import {ProductContext} from "../App";
 
 export default function ListProducts() {
 
-    const value = useContext(ProductContext);
-    const {value1 , value2, value3} = value;
-    const [products] = value1;
-    const [currentId] = value3;
-    const [canRead, setCanRead] = useState(true);
+    let value = useContext(ProductContext);
+    let {value1 , value2, value3} = value;
+    let [products, setProducts] = value1;
+    let [currentId, setCurrentId] = value3;
+    let [canRead, setCanRead] = useState(true);
 
     useEffect(() => {
         fetchPermissions()
@@ -20,6 +20,9 @@ export default function ListProducts() {
                 setCanRead(result.some(x => x === "READ"));
             })
     }, []);
+
+
+
 
     return (
         canRead ?
