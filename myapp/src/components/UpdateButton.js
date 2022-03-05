@@ -56,7 +56,7 @@ export default function UpdateButton() {
     function editProduct(e) {
 
         const row = e.currentTarget.parentElement.parentElement;
-        let newId = row.getAttribute('id');
+        const newId = row.getAttribute('id');
 
         if (newId === currentId) {
 
@@ -85,7 +85,6 @@ export default function UpdateButton() {
             }
 
         } else {
-            newId = currentId;
             setCurrentId(row.getAttribute("id"));
         }
     }

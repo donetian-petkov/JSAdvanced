@@ -3,7 +3,7 @@ import UpdateButton from "./UpdateButton";
 import DeleteButton from "./DeleteButton";
 import {useState, useEffect, useContext} from "react";
 import fetchPermissions from "../services/fetchPermissions";
-import CreateRow from "./CreateRow";
+import CreateCell from "./CreateCell";
 import {ProductContext} from "../App";
 import React from 'react';
 
@@ -37,11 +37,11 @@ export default function ListProducts() {
                 return (
                     <tr key={val.objectId} id={val.objectId}>
 
-                        <CreateRow type="text" name="name" id={currentId} product={val} className={styles.inputFields} defaultValue={val.name}/>
+                        <CreateCell type="text" name="name" id={currentId} product={val} className={styles.inputFields} defaultValue={val.name}/>
 
-                        <CreateRow type="number" name="price" id={currentId}  product={val} className={styles.inputFields} defaultValue={val.price}/>
+                        <CreateCell type="number" name="price" id={currentId} product={val} className={styles.inputFields} defaultValue={val.price}/>
 
-                        <CreateRow type="text" name="currency" id={currentId}  product={val} className={styles.inputFields} defaultValue={val.currency}/>
+                        <CreateCell type="text" name="currency" id={currentId} product={val} className={styles.inputFields} defaultValue={val.currency}/>
 
                         <td className={styles.buttons}>
                             <UpdateButton/>
