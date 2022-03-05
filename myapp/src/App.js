@@ -2,6 +2,7 @@ import './App.css';
 import CreateForm from "./components/CreateForm.js";
 import ListProducts from "./components/ListProducts";
 import React, {useEffect , useState} from "react";
+import Footer from "./components/Footer";
 export const ProductContext = React.createContext();
 
 
@@ -27,15 +28,38 @@ function App() {
         listProductsHandler()
     },[]);
 
+    let marginValue = '';
+
+    switch(products.length){
+        case 0:
+            marginValue = "20%";
+        case 1:
+            marginValue = "16%";
+            break;
+        case 2:
+            marginValue = "16%"
+            break;
+        case 3:
+            marginValue = "16%";
+            break;
+        case 4:
+            marginValue = "9.5%";
+            break;
+        default:
+            marginValue = "4%";
+    }
+
 
     return (
         <div className="App">
-
+            <h1>Products App</h1>
+            <div className="components" style={{marginBottom: marginValue}}>
             <ProductContext.Provider value={{value1:[products , setProducts],value2:listProductsHandler, value3:[currentId, setCurrentId]}}>
             <CreateForm listProductsHandler={listProductsHandler}/>
             <ListProducts/>
             </ProductContext.Provider>
-
+            </div>
+            <Footer />
         </div>
     );
 }

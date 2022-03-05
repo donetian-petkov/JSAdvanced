@@ -23,6 +23,7 @@ export default function ListProducts() {
 
 
 
+
     return (
         canRead ?
         <table className={styles.listProducts}>
