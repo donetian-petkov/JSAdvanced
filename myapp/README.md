@@ -72,6 +72,7 @@ In the app the components are set and there are two additional functionalities -
 # FAQ: 
 
 Q: Why am I using custom handler functions and the products state when I have the listProductsHandler? 
+
 A: The listProductsHandler will generate new fetch requests through the API, while using the state and custom function will minimise the requests to the most essential ones, which improves the performance on the site. 
 
 
