@@ -69,7 +69,7 @@ It is a JSON array which contains permissions. By removing permissions from the 
 In the app the components are set and there are two additional functionalities - the listProductsHandler function, which is executed once, when the App is rendered, and a switch which sets the App margin bottom so that removing products on the page won't affect the design of the page. 
 
 
-#FAQ: 
+# FAQ: 
 
 Q: Why am I using custom handler functions and the products state when I have the listProductsHandler? 
 A: The listProductsHandler will generate new fetch requests through the API, while using the state and custom function will minimise the requests to the most essential ones, which improves the performance on the site. 
