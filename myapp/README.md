@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Products React App 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is my custom Products React App, which is able to C,R,U,D product items. You may create products, edit them and delete them. 
 
-## Available Scripts
+# How to start the App
 
-In the project directory, you can run:
+You may use npm. First you must run the npm install -i for the dependencies to be installed and then you may start the production via the npm start command. 
 
-### `npm start`
+# What did I use to make the App 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Mostly React with plenty of CSS and the only external React library I used was react-hot-toast (https://github.com/timolins/react-hot-toast) for the Notifications
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# How the App works 
 
-### `npm test`
+## Components - in the components folder
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### The CreateForm 
 
-### `npm run build`
+The create form collects name, price and currency from the form and sends a POST request to my database through custom API - https://parseapi.back4app.com/classes/Product with the submitted name, price and currency in a JSON object. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The form checks two things - if you have filled all of the input fields and if the product you are trying to create does not exist in the database already. The last check is done through the products state (an array with the products as objects inside) stored in the context of the app. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Finally, when the form is submitted we execute the listProductsHandler function passed through the context, which updates the products state by making a GET request to the API. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### The ListProducts 
 
-### `npm run eject`
+The List Products displays the current state of the products and enables the visitor to edit the products or delete them. For this the List uses two states - the products mentioned above and the currentId which stores the id of the row where the Update has been clicked last. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+With the currentId and the products the List creates each row, which has id that equals the product's objectId on it. The cells of each row are created through a separate CreateCell component via props - we pass to the component the currentId, the name, price and currency from the products, the class of the rows and a default value (for the name cell we pass the name of the product on the row and etc). 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### CreateCell 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The CreateCell component creates an input field used for the cell with the passed props. The specific thing here is whether or not the currentId matches the product's objectId. If it does not the input field is disabled (readonly) and its text color is gray. If it does you may write in the input field and the text color is black. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### UpdateButton  
 
-## Learn More
+The UpdateButton component is responsible for creating the Update button and for the actions when the Edit button is clicked (through event handler). It uses the products state and the currentId from the context. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+When the button is clicked we create a newId variable, which stores the id of the row and we check if the newId matches the currentId: 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1) If it does this means that we have presed the Update on the specific row twice and we want to update the product in the row. The app sends a PUT request through the above API to my database for the product that matches the id of the row with the new information. 
 
-### Code Splitting
+Finally, we call an editHandler function which updates the products state by first removing the old product from the products array and then inserting the new/edited product at the index of the old product.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Here we make two checks - if any of the input fields are empty and if there is a product with the same name we want to set for the row. 
 
-### Analyzing the Bundle Size
+2) If it does not - we update the currentId with the id of the row. In this way when the Update button is pressed again on the same row the 1) will be executed, but if it is pressed on the another row an update request will not be sent and instead the currentId will be updated. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### DeleteButton 
 
-### Making a Progressive Web App
+Much simpler situation - the component creates the Delete button and when the button is clicked we take the id of the row on which the button was clicked and we delete the row. To do so we first send a DELETE request to the API and then we update the products state by filtering the products array. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Footer 
 
-### Advanced Configuration
+Basic footer, nothing special - it leads to the website online, to this GitHub page and to two other websites I have created
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Additional functions 
 
-### Deployment
+### Fetch services - placed in the services folder
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Additional functions which handle the fetch requests for the various components 
 
-### `npm run build` fails to minify
+### Permissions - placed in the public folder 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+It is a JSON array which contains permissions. By removing permissions from the array we set if the CreateForm, ListProducts, UpdateButton and the DeleteButton will be shown to the visitor. In each component there is useEffect, which checks the state of the permissions and based on the check it sets boolean variables which  during the render tell if the component will be shown or not.
+
+## App.js 
+
+In the app the components are set and there are two additional functionalities - the listProductsHandler function, which is executed once, when the App is rendered, and a switch which sets the App margin bottom so that removing products on the page won't affect the design of the page. 
+
+
+FAQ: 
+
+Q: Why am I using custom handler functions and the products state when I have the listProductsHandler? 
+A: The listProductsHandler will generate new fetch requests through the API, while using the state and custom function will minimise the requests to the most essential ones, which improves the performance on the site. 
+
+
