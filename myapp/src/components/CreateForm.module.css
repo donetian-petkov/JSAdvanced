@@ -20,7 +20,7 @@
 }
 
 .createDetails:hover {
-    box-shadow: 7px 7px 15px 5px #777777;
+    box-shadow: 7px 7px 15px 5px #000000;
 }
 
 .submitButton {
