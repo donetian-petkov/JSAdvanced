@@ -6,6 +6,10 @@ This is my custom Products React App, which is able to C,R,U,D product items. Yo
 
 You may use npm. First you must run the npm install -i for the dependencies to be installed and then you may start the production via the npm start command. 
 
+Another alternative is to view it online via: 
+
+https://donetian-petkov.github.io/
+
 # What did I use to make the App 
 
 Mostly React with plenty of CSS and the only external React library I used was react-hot-toast (https://github.com/timolins/react-hot-toast) for the Notifications
