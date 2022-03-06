@@ -59,7 +59,6 @@ Basic footer, nothing special - it leads to the website online, to this GitHub p
 ### Fetch services - placed in the services folder
 
 Additional functions which handle the fetch requests for the various components 
-<<<<<<< Updated upstream
 
 ### Permissions - placed in the public folder 
 
