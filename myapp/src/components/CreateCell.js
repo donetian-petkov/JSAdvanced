@@ -5,7 +5,7 @@ export default function CreateCell({
                                   }) {
 
     return (
-        <td>
+        <td style={{background: product.objectId === id ? "rgb(59 110 207)" : "rgb(198 221 244)"}}>
             <input type={type}
                    name={name}
                    className={className}

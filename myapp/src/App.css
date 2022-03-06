@@ -18,3 +18,11 @@
     margin-top:50px;
     margin-bottom: 16%;
 }
+
+@media all and (max-width: 1100px) {
+
+    .components {
+        display: block;
+    }
+
+}

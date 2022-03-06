@@ -55,8 +55,8 @@ function App() {
             <h1>Products App</h1>
             <div className="components" style={{marginBottom: marginValue}}>
             <ProductContext.Provider value={{value1:[products , setProducts],value2:listProductsHandler, value3:[currentId, setCurrentId]}}>
-            <CreateForm listProductsHandler={listProductsHandler}/>
-            <ListProducts/>
+            <CreateForm className="createForm" listProductsHandler={listProductsHandler}/>
+            <ListProducts className="listProducts"/>
             </ProductContext.Provider>
             </div>
             <Footer />
